@@ -1,4 +1,7 @@
 <template>
+  <div>
+  <Navbar/>
+  
   <div class="container">
     <div class="row">
       <div class="col-12 py-5">
@@ -24,11 +27,13 @@
       </div>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import Todo from "./Todo.vue";
 import CreateTodo from "./CreateTodo.vue";
+import Navbar from "./Navbar.vue";
 
 export default {
   props: {
@@ -57,7 +62,7 @@ export default {
       todo.description = newTodoDescription;
     },
   },
-  components: { Todo, CreateTodo },
+  components: { Todo, CreateTodo, Navbar },
 };
 </script>
 
