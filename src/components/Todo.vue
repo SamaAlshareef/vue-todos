@@ -1,4 +1,5 @@
 <template>
+<div>
   <li class="d-flex align-items-center list-group-item">
     <button
       class="btn border-0 flex-grow-1 text-left shadow-none"
@@ -26,7 +27,11 @@
     <button @click="$emit('on-delete')" class="btn btn-outline-danger border-0">
       <span class="fa fa-trash"></span>
     </button>
+    <div class="form-check">
+      <input type="checkbox" @click="$emit('on-checked')">
+    </div>
   </li>
+</div>
 </template>
 
 <script>

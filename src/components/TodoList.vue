@@ -8,7 +8,7 @@
         <h1>{{ listName }}</h1>
       </div>
     </div>
-    <div class="row mb-3">
+    <div class="row mb-3" @change.once="updateTodoArray">
       <create-todo @on-new-todo="addTodo($event)" />
     </div>
     <div class="row">
@@ -19,6 +19,7 @@
             :key="index"
             :description="todo.description"
             :completed="todo.completed"
+            @on-checked="todoChecked(todo)"
             @on-toggle="toggleTodo(todo)"
             @on-delete="deleteTodo(todo)"
             @on-edit="editTodo(todo, $event)"
@@ -41,28 +42,50 @@ export default {
   },
   data() {
     return {
-      todos: [
-        { description: "Shut up", completed: false },
-        { description: "Take out the trash", completed: false },
-        { description: "Finish doing laundry", completed: false },
-      ],
+      todos: JSON.parse(localStorage.getItem("todos")) ,
+      completedTodos:[],
+      
     };
+    
   },
   methods: {
+    initializeTodoArray(){
+      this.todos = JSON.parse(localStorage.getItem("todos"));
+      console.log(this.todos);
+    },
+    updateTodoArray(){
+      const stringTodos = JSON.stringify(this.todos);
+      localStorage.setItem("todos",stringTodos);
+    },
     addTodo(newTodo) {
       this.todos.push({ description: newTodo, completed: false });
+      const stringTodos = JSON.stringify(this.todos);
+      localStorage.setItem("todos",stringTodos);
     },
     toggleTodo(todo) {
       todo.completed = !todo.completed;
     },
     deleteTodo(deletedTodo) {
       this.todos = this.todos.filter(todo => todo !== deletedTodo);
+      this.updateTodoArray();
     },
     editTodo(todo, newTodoDescription) {
       todo.description = newTodoDescription;
+      this.updateTodoArray();
     },
+    todoChecked(checkedTodo){
+      checkedTodo.completed = true;
+      this.completedTodos.push(checkedTodo);
+      const TodosDone = JSON.stringify(this.completedTodos);
+      localStorage.setItem("CompletedTodos",TodosDone);
+      this.todos = this.todos.filter(todo => todo !== checkedTodo);
+      localStorage.setItem("todos",this.todos);
+    }
+    
   },
   components: { Todo, CreateTodo, Navbar },
+  
+  
 };
 </script>
 
