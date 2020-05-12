@@ -8,7 +8,7 @@
         <h1>{{ listName }}</h1>
       </div>
     </div>
-    <div class="row mb-3" @change.once="updateTodoArray">
+    <div class="row mb-3">
       <create-todo @on-new-todo="addTodo($event)" />
     </div>
     <div class="row">
@@ -42,16 +42,20 @@ export default {
   },
   data() {
     return {
-      todos: JSON.parse(localStorage.getItem("todos")) ,
+      
+      todos: [],
       completedTodos:[],
       
     };
     
   },
+  mounted(){
+        this.initializeTodoArray();
+  },
   methods: {
     initializeTodoArray(){
       this.todos = JSON.parse(localStorage.getItem("todos"));
-      console.log(this.todos);
+      this.completedTodos = JSON.parse(localStorage.getItem("CompletedTodos"));
     },
     updateTodoArray(){
       const stringTodos = JSON.stringify(this.todos);
@@ -79,7 +83,7 @@ export default {
       const TodosDone = JSON.stringify(this.completedTodos);
       localStorage.setItem("CompletedTodos",TodosDone);
       this.todos = this.todos.filter(todo => todo !== checkedTodo);
-      localStorage.setItem("todos",this.todos);
+      this.updateTodoArray();
     }
     
   },
