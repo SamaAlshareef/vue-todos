@@ -28,7 +28,7 @@
       <span class="fa fa-trash"></span>
     </button>
     <div class="form-check">
-      <input type="checkbox"  @click="$emit('on-checked') >
+      <input type="checkbox"  @click="$emit('on-checked')" >
     </div>
   </li>
 </div>
