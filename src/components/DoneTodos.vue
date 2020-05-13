@@ -26,13 +26,21 @@ import FixedTodoItem from "./FixedTodoItem.vue";
 export default {
     data() {
     return {
-        completedTodos: JSON.parse(localStorage.getItem("CompletedTodos"))
+        completedTodos: []
     };
   },
     props: {
     description: String,
     completed: Boolean,
     
+  },
+  mounted(){
+        this.initializeDoneTodosArray();
+  },
+  methods:{
+    initializeDoneTodosArray(){
+      this.completedTodos = JSON.parse(localStorage.getItem("CompletedTodos"));
+    },
   },
 
     components: {Navbar,FixedTodoItem},
