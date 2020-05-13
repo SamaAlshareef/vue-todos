@@ -15,4 +15,4 @@ yarn serve
 The Website consists of three tabs
 - Home: You can edit and add new todos
 - Todos: See pending todos 
-- Run Todos: See completed todos
+- Done Todos: See completed todos
