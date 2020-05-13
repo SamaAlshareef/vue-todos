@@ -3,7 +3,7 @@
 ### Clone or fork the project
 
 
-## Run yarn install to setup the project
+### Run yarn install to setup the project
 ```
 yarn install
 ```
@@ -12,3 +12,7 @@ yarn install
 ```
 yarn serve
 ```
+The Website consists of three tabs
+- Home: You can edit and add new todos
+- Todos: See pending todos 
+- Run Todos: See completed todos
