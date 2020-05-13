@@ -1,5 +1,7 @@
 # vue-todos
 
+## Clone or fork the project
+
 ## Project setup
 ```
 yarn install
